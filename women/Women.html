@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title style="font-family: fantasy;">Women's collections</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="women.css">
+</head>
+<body>
+<div class="app" id="app">
+  <header>
+    <div class="brand">
+      <div class="logo">W</div>
+      <div class="title">
+        <h1>Women's Collections</h1>
+        <p>Clothing, footwear, accessories & more — live demo</p>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="search">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" style="opacity:0.9"><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" /><circle cx="11" cy="11" r="6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" /></svg>
+        <input id="search" placeholder="Search kurta, jeans, dress..." />
+      </div>
+
+      <div style="display:flex; gap:8px; align-items:center;">
+        <label style="color:var(--muted);font-size:13px;">Sort</label>
+        <select id="sort">
+          <option value="popular">Popular</option>
+          <option value="price_low">Price: Low → High</option>
+          <option value="price_high">Price: High → Low</option>
+          <option value="rating">Rating</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="top-actions">
+      <!-- Back to Home Button -->
+      <button class="icon-btn" onclick="window.location.href='../homepage/index.html'">
+        <i class="fas fa-home"></i> Home
+      </button>
+      
+      <!-- Cart Button -->
+      <div class="cart-container">
+        <button class="nav-btn" id="cart-btn">
+          <i class="fas fa-shopping-bag"></i> Cart
+          <span class="cart-count">0</span>
+        </button>
+        <div class="cart-preview" id="cart-preview">
+          <div class="cart-preview-header">
+            <h3>Your Cart</h3>
+            <span id="cart-items-count">0 items</span>
+          </div>
+          <div class="cart-items" id="cart-items">
+            <div class="empty-cart">Your cart is empty</div>
+          </div>
+          <div class="cart-preview-footer">
+            <div class="cart-total">Total: ₹<span id="cart-total">0.00</span></div>
+            <button class="view-cart-btn" onclick="window.location.href='../cart/cart.html'">View Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <aside class="filters" aria-label="Filters">
+      <h3>Filters</h3>
+      <div style="margin-top:8px">
+        <strong style="font-size:13px">Category</strong>
+        <div id="cat-chips" style="margin-top:8px"></div>
+      </div>
+      <div style="margin-top:12px">
+        <strong style="font-size:13px">Size</strong>
+        <div id="size-chips" style="margin-top:8px"></div>
+      </div>
+      <div style="margin-top:12px">
+        <strong style="font-size:13px">Color</strong>
+        <div id="color-chips" style="margin-top:8px;display:flex;flex-wrap:wrap;gap:8px"></div>
+      </div>
+      <div style="margin-top:12px">
+        <strong style="font-size:13px">Price</strong>
+        <div style="display:flex;gap:8px;margin-top:8px;align-items:center">
+          <input id="minPrice" placeholder="Min" style="width:88px;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit"/>
+          <input id="maxPrice" placeholder="Max" style="width:88px;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit"/>
+          <button id="applyPrice" class="chip">Apply</button>
+        </div>
+      </div>
+
+      <div style="margin-top:12px; display:flex; gap:8px;">
+        <button id="clearFilters" class="chip">Clear</button>
+        <button id="shuffle" class="chip">Shuffle</button>
+      </div>
+    </aside>
+
+    <section class="catalog">
+      <div class="toolbar">
+        <div style="color:var(--muted);" id="result-count">Showing 0 products</div>
+        <div style="color:var(--muted);font-size:13px">Grid</div>
+      </div>
+
+      <div class="grid" id="grid"></div>
+    </section>
+  </main>
+</div>
+
+<div id="v-toast" style="opacity:0"></div>
+<div id="modal-root"></div>
+
+<script src="women.js"></script>
+</body>
+</html>

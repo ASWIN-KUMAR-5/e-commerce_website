@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+/* --- THEME: Deep Indigo Background, Pale Lavender Cards --- */
+
+/* --- Colors --- 
+* Background: #0A1931 (Deep Indigo)
+* Accent: #F3C649 (Bright Gold)
+* Card Background: #E6E6FA (Pale Lavender) 
+* Text: #1F2937 (Dark Charcoal) 
+*/
+
+body {
+  font-family: 'Inter', sans-serif;
+  /* Deep Indigo Background */
+  background: linear-gradient(135deg, #0A1931, #152D4D); 
+  color: #E5E7EB; /* Light text for page header */
+  overflow-x: hidden;
+}
+
+.hero-title {
+  /* Dynamic gradient cycling between Deep Indigo and Gold (Kept) */
+  background-image: linear-gradient(90deg, #152D4D, #F3C649, #152D4D, #F3C649);
+  background-size: 500%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 10px rgba(243, 198, 73, 0.6)); /* Gold drop shadow (Kept) */
+  animation: gradientFlow 10s ease infinite;
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* --- Card Styles (Light Background Upgrade) --- */
+.team-card {
+  position: relative;
+  /* UPDATED: Pale Lavender card background */
+  background: #E6E6FA; 
+  border: 1px solid rgba(0, 0, 0, 0.1); /* Light, subtle border */
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  /* Softer shadow for a light element */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3); 
+  cursor: pointer;
+  /* Dark text inside light card */
+  color: #1F2937; 
+}
+.team-card:hover {
+  transform: translateY(-8px); 
+  /* Gold accent border on hover */
+  border-color: #F3C649; 
+  /* Gold shadow on hover */
+  box-shadow: 0 15px 45px rgba(243, 198, 73, 0.4); 
+}
+
+/* Image Styling */
+.photo-container {
+  position: relative;
+  overflow: hidden;
+  width: 260px; 
+  height: 260px; 
+  margin: 20px auto 0; 
+  border-radius: 50%; 
+  box-shadow: 0 0 25px rgba(243, 198, 73, 0.1); 
+  transition: all 0.4s ease;
+}
+
+.team-card:hover .photo-container {
+    box-shadow: 0 0 25px rgba(243, 198, 73, 0.6);
+    transform: scale(1.05);
+}
+
+.team-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%; 
+  transition: all 0.4s ease;
+}
+
+/* OVERLAY STYLES FOR NAME ONLY ON HOVER */
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;
+  /* Semi-transparent Deep Indigo overlay */
+  background: rgba(10, 25, 49, 0.85); 
+  backdrop-filter: blur(5px);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  border-radius: 50%; 
+}
+
+/* --- New class to control the overlay visibility via JS --- */
+.overlay.show-overlay {
+    opacity: 1;
+}
+
+.overlay h3 {
+  /* Gold text on dark background to match accent */
+  color: #F3C649; 
+  font-size: 1.5rem; 
+  font-weight: 800;
+  text-shadow: none; 
+  white-space: nowrap; 
+  
+  padding: 8px 16px;
+  /* Dark Blue background for name box */
+  background-color: rgba(21, 45, 77, 0.8); 
+  border-radius: 8px;
+  /* Gold border on the name box */
+  border: 1px solid #F3C649; 
+  
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease 0.1s;
+}
+
+/* --- New class to control the name text visibility via JS (timed) --- */
+.overlay h3.show-name {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Styles for the permanently visible Role and Description */
+.card-details {
+    padding: 1rem 1.5rem; 
+    text-align: center;
+    /* Subtle Dark Line */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); 
+    margin-bottom: 0.5rem;
+    margin-top: 1rem; 
+}
+
+.card-details .role-text {
+    /* Role text is now the gold accent color */
+    color: #F3C649; 
+    margin-bottom: 0.25rem;
+    font-size: 1.1rem;
+    font-weight: 700; /* Increased weight for visibility */
+    /* REMOVED: text-shadow property for a cleaner look */
+}
+
+.card-details .desc-text {
+    /* Sharper dark text for better contrast (less dull) */
+    color: #1F2937; 
+    font-weight: 500; /* Slightly increased weight */
+}
+
+/* --- Button Styles (Icon Box Improvement) --- */
+.icon-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: #F3C649; /* Gold accent color (Kept) */
+  width: 44px; /* Fixed size for circular shape (Kept) */
+  height: 44px;
+  border-radius: 50%; 
+  
+  /* Dark background for contrast against the light card */
+  background-color: #152D4D; 
+  border: 1px solid rgba(243, 198, 73, 0.4); /* Gold Border (Kept) */
+  box-shadow: 0 0 10px rgba(243, 198, 73, 0.1); /* Subtle initial glow (Kept) */
+  
+  transition: all 0.3s ease;
+}
+
+.icon-btn:hover {
+  /* UPGRADE: Stronger gold glow and lift (Kept) */
+  transform: scale(1.15) translateY(-2px); 
+  filter: drop-shadow(0 0 15px rgba(243, 198, 73, 0.9)); 
+  border-color: #F3C649; 
+  background-color: #2F456B; 
+}
+
+
+/* Neon Popup for Links (Kept the dark look as it pops off the dark page background) */
+.popup {
+    position: absolute;
+    background: #1F2937;
+    border: 1px solid #F3C649;
+    border-radius: 9999px;
+    padding: 6px 16px;
+    color: #F3C649;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transform: translate(-50%, -120%);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+    z-index: 50;
+    white-space: nowrap;
+}
+
+.popup.show {
+    opacity: 1;
+    transform: translate(-50%, -150%);
+}
+
+
+footer {
+  /* Dark Indigo Footer (Kept) */
+  background: linear-gradient(to top, #0A1931, #152D4D);
+  border-top: 1px solid rgba(243, 198, 73, 0.25); 
+  text-align: center;
+  padding: 40px 20px;
+  color: #A9B2C8;
+  font-size: 0.9rem;
+  margin-top: 40px;
+}
+footer span { color: #F3C649; font-weight: 600; }
