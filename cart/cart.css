@@ -1,0 +1,722 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary: #ff4d94;
+  --secondary: #4a4a8a;
+  --dark: #2c2c54;
+  --light: #f9f9ff;
+  --gradient: linear-gradient(90deg, var(--primary), var(--secondary));
+  --shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  --transition: all 0.4s ease;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #f8f9fc, #f1f3f9);
+  color: var(--dark);
+  margin: 0;
+  padding: 0;
+}
+
+/* Header Styles */
+header {
+  background-color: white;
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 18px 5%;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--dark);
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  position: relative;
+}
+
+.logo i {
+  margin-right: 10px;
+  color: var(--primary);
+  animation: pulse 2s infinite;
+  font-size: 28px;
+}
+
+.logo::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  transition: var(--transition);
+}
+
+.logo:hover::after {
+  width: 100%;
+}
+
+/* ----------- CONTINUE SHOPPING BUTTON ----------- */
+.back-btn {
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  background: transparent;
+  padding: 10px 25px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+  box-shadow: 0 0 15px rgba(255, 77, 148, 0.6);
+  transform: translateY(-2px);
+}
+
+/* ===== PAGE CONTAINER ===== */
+.cart-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 20px 30px 120px; /* Added padding-bottom for sticky footer */
+  
+  /* --- ADDED FOR LAYOUT --- */
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* 2/3 for items, 1/3 for summary */
+  gap: 30px;
+  /* --- END ADDED --- */
+}
+
+/* ===== PAGE TITLE ===== */
+.cart-title {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 700;
+  background: var(--gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 40px;
+}
+
+/* ===== CART ITEM ===== */
+.cart-item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--light);
+  border-radius: 20px;
+  padding: 18px 25px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.cart-item-row:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(255, 77, 148, 0.2);
+}
+
+.cart-item-row img {
+  width: 90px;
+  height: 90px;
+  border-radius: 15px;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.cart-item-details {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.cart-item-details h3 {
+  font-size: 18px;
+  margin: 0;
+  color: var(--dark);
+  font-weight: 600;
+}
+
+.cart-item-details .price {
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/* ===== QUANTITY CONTROLS ===== */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.qty-btn {
+  width: 35px;
+  height: 35px;
+  background: var(--gradient);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 18px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.qty-btn:hover {
+  transform: scale(1.1);
+}
+
+.qty {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* ===== ITEM TOTAL ===== */
+.item-total {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--dark);
+  min-width: 100px;
+  text-align: right;
+}
+
+/* ===== CART ACTIONS ===== */
+.cart-item-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.cart-item-actions button {
+  background: none;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.cart-item-actions .remove-item {
+  color: #ff3c3c;
+}
+
+.cart-item-actions button:hover {
+  transform: scale(1.1);
+  color: var(--primary);
+}
+
+/* --- NEW STYLE FOR SAVE FOR LATER BUTTON --- */
+.cart-item-actions .save-for-later {
+  /* Gives the button an outline look */
+  border: 2px solid var(--secondary); 
+  background: transparent;
+  color: var(--secondary);
+  
+  /* Sizing and positioning */
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  transform: none; 
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.cart-item-actions .save-for-later:hover {
+  /* Changes to solid background on hover */
+  background: var(--secondary);
+  color: white;
+  border-color: var(--secondary);
+  box-shadow: 0 4px 15px rgba(74, 74, 138, 0.4);
+  transform: translateY(-2px);
+}
+
+/* ===== CART SUMMARY ===== */
+.summary {
+  /* This is the grid item wrapper */
+  margin-top: 0; 
+}
+
+.summary-details {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  padding: 25px 30px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.summary-details::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 2px;
+  background: var(--gradient);
+  mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.summary-details h3 {
+  text-align: center;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 15px;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  margin: 8px 0;
+}
+
+.summary-row.total {
+  border-top: 2px solid #eee;
+  margin-top: 12px;
+  padding-top: 12px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+/* ===== COUPON BOX ===== */
+.coupon-box {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.coupon-box input {
+  flex: 1;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  outline: none;
+  font-size: 14px;
+  transition: var(--transition);
+}
+
+.coupon-box input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 6px rgba(255, 77, 148, 0.2);
+}
+
+.coupon-box button {
+  background: var(--gradient);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 10px 18px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.coupon-box button:hover {
+  transform: scale(1.05);
+}
+
+/* ===== CHECKOUT BUTTON (Sticky) ===== */
+/* Style for the checkout button when it is inside the summary box */
+.summary-details .checkout-btn {
+  width: 100%;
+  padding: 15px 0;
+  margin-top: 25px; /* Adds space above the button, separating it from the coupon/total */
+  border: none;
+  border-radius: 30px;
+  
+  /* Styling to match the design (uses var(--gradient) from your CSS) */
+  background: var(--gradient);
+  color: white;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(74, 74, 138, 0.4);
+  transition: var(--transition);
+  
+  /* Crucial: Ensure the button is a standard block element and not fixed */
+  position: static; 
+}
+
+.summary-details .checkout-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(74, 74, 138, 0.6);
+}
+
+/* ===== CANCEL BUTTON ===== */
+.cancel-btn {
+  background: transparent;
+  border: 2px solid #ddd;
+  color: #666;
+  padding: 10px 25px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-right: 15px;
+}
+
+.cancel-btn:hover {
+  background: #f0f0f0;
+  border-color: #bbb;
+  color: #333;
+  transform: translateY(-2px);
+}
+
+/* ===== BUTTON CONTAINER ===== */
+.cart-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  gap: 15px;
+}
+
+/* ===== MODAL ===== */
+.checkout-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.checkout-content {
+  background: #fff;
+  padding: 40px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 480px;
+  box-shadow: var(--shadow);
+  animation: popIn 0.3s ease;
+}
+
+.checkout-content h2 {
+  text-align: center;
+  background: var(--gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+
+.checkout-content input,
+.checkout-content select,
+.checkout-content textarea {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  transition: var(--transition);
+}
+
+.checkout-content input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 4px rgba(255, 77, 148, 0.3);
+}
+
+/* === NEW STYLE FOR MODAL SUBMIT BUTTON === */
+/* (To fix the .checkout-btn conflict) */
+.modal-submit-btn {
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 16px;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.modal-submit-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: 0.5s;
+}
+
+.modal-submit-btn:hover::before {
+  left: 100%;
+}
+
+.modal-submit-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(255, 77, 148, 0.4);
+}
+
+/* ===== SUCCESS MESSAGE ===== */
+#success-msg {
+  text-align: center;
+}
+
+#success-msg h2 {
+  color: var(--primary);
+  font-size: 24px;
+}
+
+#back-home {
+  /* This now uses .modal-submit-btn styles */
+  margin-top: 12px;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes popIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ===== RESPONSIVE STYLES ===== */
+@media (max-width: 768px) {
+  .cart-container {
+    padding: 20px 15px 120px;
+    
+    /* --- ADDED --- */
+    grid-template-columns: 1fr; /* Stack items and summary */
+    /* --- END ADDED --- */
+  }
+  
+  .cart-item-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .cart-item-details {
+    margin-left: 0;
+    width: 100%;
+  }
+  
+  .cart-item-actions {
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-end;
+  }
+  
+  .cart-buttons {
+    flex-direction: column;
+  }
+  
+  .cancel-btn, .checkout-btn {
+    width: 100%;
+    margin: 5px 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .cart-title {
+    font-size: 28px;
+  }
+  
+  .cart-item-row {
+    padding: 15px;
+  }
+  
+  .summary-details {
+    padding: 20px;
+  }
+  
+  .checkout-content {
+    padding: 25px;
+  }
+}
+
+/* === ADDED TO SUPPORT SAVED ITEMS (From cart.js) === */
+.saved-items-section {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 30px;
+}
+.saved-items-section h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--dark);
+  margin-bottom: 20px;
+}
+.saved-items .cart-item-row {
+  justify-content: space-between;
+}
+.saved-items .cart-item-row img {
+  width: 70px;
+  height: 70px;
+}
+.empty-saved {
+  color: #666;
+  padding: 20px;
+  text-align: center;
+  background: var(--light);
+  border-radius: 15px;
+}
+
+.move-to-cart {
+  background: var(--gradient);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.move-to-cart:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(255, 77, 148, 0.3);
+}
+
+/* === ADDED TO SUPPORT TOASTS (From cart.js) === */
+#toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.toast {
+  padding: 15px 20px;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  animation: slideInRight 0.3s ease, fadeOut 0.3s ease 3.2s forwards;
+}
+.toast.success { background-color: #28a745; }
+.toast.error { background-color: #dc3545; }
+.toast.info { background-color: #17a2b8; }
+
+/* === ADDED TO SUPPORT CHECKOUT MODAL (From cart.js) === */
+.checkout-content {
+  /* ... already styled ... */
+  position: relative; /* Added for loader */
+}
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 28px;
+  color: #888;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.close-btn:hover {
+  color: #333;
+  transform: rotate(90deg);
+}
+.checkout-total {
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--primary);
+}
+.loader {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.9);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+}
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+.loader p {
+  font-weight: 600;
+  color: var(--dark);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
