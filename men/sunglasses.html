@@ -1,0 +1,1779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sunglasses - StyleVibe</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* --- BASIC PAGE STYLE --- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    :root {
+      --primary: #ff4d94;
+      --secondary: #4a4a8a;
+      --accent: #ffb6c1;
+      --dark: #2c2c54;
+      --light: #f8f9fa;
+      --text: #333333;
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      --glow: 0 0 15px rgba(255, 77, 148, 0.5);
+      --gradient: linear-gradient(90deg, var(--primary), var(--secondary));
+    }
+
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+      color: var(--text);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Floating Elements */
+    .floating-elements {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .floating-element {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 77, 148, 0.1);
+      border-radius: 50%;
+      animation: float 15s infinite linear;
+    }
+
+    .floating-element:nth-child(1) {
+      top: 10%;
+      left: 10%;
+      width: 60px;
+      height: 60px;
+      animation-duration: 20s;
+    }
+
+    .floating-element:nth-child(2) {
+      top: 70%;
+      left: 80%;
+      width: 30px;
+      height: 30px;
+      animation-duration: 25s;
+    }
+
+    .floating-element:nth-child(3) {
+      top: 40%;
+      left: 85%;
+      width: 50px;
+      height: 50px;
+      animation-duration: 18s;
+    }
+
+    .floating-element:nth-child(4) {
+      top: 80%;
+      left: 15%;
+      width: 40px;
+      height: 40px;
+      animation-duration: 22s;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+      25% {
+        transform: translate(20px, 30px) rotate(90deg);
+      }
+      50% {
+        transform: translate(0, 60px) rotate(180deg);
+      }
+      75% {
+        transform: translate(-20px, 30px) rotate(270deg);
+      }
+      100% {
+        transform: translate(0, 0) rotate(360deg);
+      }
+    }
+
+    /* --- HEADER --- */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 25px;
+      background: white;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      animation: slideDown 1s ease;
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--dark);
+    }
+
+    .logo i {
+      color: var(--primary);
+      margin-right: 8px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    /* Updated Button Styles */
+    .nav-btn {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(255, 77, 148, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      font-size: 16px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .nav-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: 0.5s;
+    }
+
+    .nav-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 77, 148, 0.4);
+    }
+
+    .nav-btn:hover::before {
+      left: 100%;
+    }
+
+    /* Cart Container */
+    .cart-container {
+      position: relative;
+    }
+
+    .cart-preview {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      width: 320px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      padding: 20px;
+      margin-top: 10px;
+      z-index: 100;
+      animation: dropdownFade 0.3s;
+    }
+
+    .cart-preview.active {
+      display: block;
+    }
+
+    .cart-preview-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .cart-preview-header h3 {
+      font-size: 18px;
+      color: var(--dark);
+    }
+
+    .cart-items {
+      max-height: 200px;
+      overflow-y: auto;
+      margin-bottom: 15px;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .cart-item img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .cart-item-info {
+      flex: 1;
+    }
+
+    .cart-item-name {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .cart-item-price {
+      font-size: 14px;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .cart-item-remove {
+      background: none;
+      border: none;
+      color: #ff4d4d;
+      cursor: pointer;
+      font-size: 16px;
+      transition: var(--transition);
+    }
+
+    .cart-item-remove:hover {
+      transform: scale(1.2);
+    }
+
+    .cart-preview-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 10px;
+      border-top: 1px solid #eee;
+    }
+
+    .cart-total {
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .view-cart-btn {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(255, 77, 148, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .view-cart-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: 0.5s;
+    }
+
+    .view-cart-btn:hover::before {
+      left: 100%;
+    }
+
+    .view-cart-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 77, 148, 0.4);
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background-color: white;
+      color: var(--primary);
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      animation: bounce 1s infinite alternate;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+    }
+
+    @keyframes dropdownFade {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h2 {
+      text-align: center;
+      margin: 40px 0;
+      font-size: 42px;
+      color: var(--dark);
+      position: relative;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 800;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+      border-radius: 2px;
+    }
+
+    /* --- PRODUCT GRID --- */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 30px;
+      padding: 20px 40px;
+      animation: fadeInUp 1.2s ease;
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --- PRODUCT CARD --- */
+    .product-card {
+      border-radius: 16px;
+      overflow: hidden;
+      background: white;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      position: relative;
+      opacity: 0;
+      transform: translateY(50px) scale(0.95);
+      animation: cardAppear 0.9s ease forwards;
+      cursor: pointer;
+    }
+
+    .product-card:nth-child(1) { animation-delay: 0.1s; }
+    .product-card:nth-child(2) { animation-delay: 0.15s; }
+    .product-card:nth-child(3) { animation-delay: 0.2s; }
+    .product-card:nth-child(4) { animation-delay: 0.25s; }
+    .product-card:nth-child(5) { animation-delay: 0.3s; }
+    .product-card:nth-child(6) { animation-delay: 0.35s; }
+    .product-card:nth-child(7) { animation-delay: 0.4s; }
+    .product-card:nth-child(8) { animation-delay: 0.45s; }
+
+    @keyframes cardAppear {
+      0% { opacity: 0; transform: translateY(50px) scale(0.95); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .product-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 280px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f8f9fa;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: var(--transition);
+    }
+
+    .product-card:hover img {
+      transform: scale(1.12);
+    }
+
+    .product-card h3 {
+      margin: 20px 0 8px;
+      font-size: 20px;
+      color: var(--dark);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .price {
+      color: var(--primary);
+      font-weight: bold;
+      font-size: 20px;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    /* Product Action Buttons */
+    .product-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px 20px;
+      gap: 10px;
+    }
+
+    .add-to-cart-btn {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: var(--transition);
+      font-weight: 600;
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .add-to-cart-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: 0.5s;
+    }
+
+    .add-to-cart-btn:hover::before {
+      left: 100%;
+    }
+
+    .add-to-cart-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 77, 148, 0.4);
+    }
+
+    .wishlist-btn {
+      background: transparent;
+      border: 2px solid var(--dark);
+      color: var(--dark);
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px;
+    }
+
+    .wishlist-btn.active {
+      background-color: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+
+    .wishlist-btn:hover {
+      background-color: var(--primary);
+      border-color: var(--primary);
+      color: white;
+      transform: scale(1.1);
+    }
+
+    @keyframes addedPulse {
+      0% { transform: scale(1); background: #4caf50; }
+      50% { transform: scale(1.1); background: #66bb6a; box-shadow: 0 0 20px rgba(76, 175, 80, 0.6); }
+      100% { transform: scale(1); background: #4caf50; }
+    }
+
+    /* Back Button */
+    .back-btn {
+      background: transparent;
+      color: var(--primary);
+      border: 2px solid var(--primary);
+      padding: 10px 18px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .back-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 77, 148, 0.1);
+      transition: 0.4s;
+    }
+
+    .back-btn:hover::before {
+      left: 0;
+    }
+
+    .back-btn:hover {
+      transform: translateX(-5px);
+      box-shadow: 0 5px 15px rgba(255, 77, 148, 0.3);
+    }
+
+    /* Collection Badge */
+    .collection-badge {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      z-index: 2;
+      animation: badgePulse 2.5s infinite;
+    }
+
+    @keyframes badgePulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+
+    /* --- PRODUCT DETAIL PAGE --- */
+    .product-detail {
+      display: none;
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+      animation: fadeIn 0.8s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .detail-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .detail-images {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .main-image {
+      width: 100%;
+      height: 500px;
+      border-radius: 15px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .main-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .thumbnail-images {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+    }
+
+    .thumbnail {
+      width: 80px;
+      height: 80px;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: var(--transition);
+      border: 2px solid transparent;
+    }
+
+    .thumbnail:hover, .thumbnail.active {
+      opacity: 1;
+      border-color: var(--primary);
+    }
+
+    .thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .detail-info {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .detail-title {
+      font-size: 32px;
+      margin: 0 0 10px;
+      color: var(--dark);
+    }
+
+    .detail-price {
+      font-size: 28px;
+      color: var(--primary);
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    .detail-description {
+      line-height: 1.6;
+      margin-bottom: 30px;
+      color: #666;
+    }
+
+    .options-container {
+      margin-bottom: 30px;
+    }
+
+    .option-title {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: var(--dark);
+      font-weight: 600;
+    }
+
+    .color-options {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .color-option {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 3px solid transparent;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .color-option:hover {
+      transform: scale(1.1);
+    }
+
+    .color-option.active {
+      border-color: var(--primary);
+      transform: scale(1.1);
+    }
+
+    .color-option.active::after {
+      content: '✓';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-weight: bold;
+      text-shadow: 0 0 3px rgba(0,0,0,0.5);
+    }
+
+    .size-options {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .size-option {
+      padding: 10px 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: var(--transition);
+      font-weight: 600;
+    }
+
+    .size-option:hover {
+      border-color: var(--primary);
+      background: rgba(255, 77, 148, 0.1);
+    }
+
+    .size-option.active {
+      border-color: var(--primary);
+      background: rgba(255, 77, 148, 0.2);
+    }
+
+    .quantity-selector {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .quantity-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #f0f0f0;
+      border: none;
+      color: var(--dark);
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .quantity-btn:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    .quantity-value {
+      font-size: 20px;
+      font-weight: 600;
+      min-width: 30px;
+      text-align: center;
+    }
+
+    .detail-action-buttons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .add-to-cart-detail-btn {
+      flex: 1;
+      padding: 16px;
+      border-radius: 25px;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      box-shadow: 0 4px 15px rgba(255, 77, 148, 0.3);
+    }
+
+    .add-to-cart-detail-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 77, 148, 0.4);
+    }
+
+    /* Wishlist Button in Detail Page */
+    .detail-wishlist-btn {
+      background: transparent;
+      border: 2px solid var(--dark);
+      color: var(--dark);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+    }
+
+    .detail-wishlist-btn.active {
+      background-color: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+
+    .detail-wishlist-btn:hover {
+      background-color: var(--primary);
+      border-color: var(--primary);
+      color: white;
+      transform: scale(1.1);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 25px;
+      }
+      
+      .main-image {
+        height: 400px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        padding: 20px;
+        gap: 20px;
+      }
+      
+      h2 {
+        font-size: 32px;
+      }
+      
+      header {
+        padding: 12px 15px;
+      }
+      
+      .product-card h3 {
+        font-size: 18px;
+      }
+      
+      .detail-container {
+        flex-direction: column;
+      }
+      
+      .main-image {
+        height: 350px;
+      }
+      
+      .detail-action-buttons {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .product-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      h2 {
+        font-size: 26px;
+      }
+      
+      .product-image {
+        height: 220px;
+      }
+      
+      .detail-title {
+        font-size: 24px;
+      }
+      
+      .detail-price {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="floating-elements">
+    <div class="floating-element"></div>
+    <div class="floating-element"></div>
+    <div class="floating-element"></div>
+    <div class="floating-element"></div>
+  </div>
+
+  <header>
+    <div class="logo">
+      <i class="fas fa-gem"></i>
+      StyleVibe
+    </div>
+    <div class="header-actions">
+      <div class="cart-container">
+        <button class="nav-btn" id="cart-btn">
+          <i class="fas fa-shopping-bag"></i> Cart
+          <span class="cart-count">0</span>
+        </button>
+        <div class="cart-preview" id="cart-preview">
+          <div class="cart-preview-header">
+            <h3>Your Cart</h3>
+            <span id="cart-items-count">0 items</span>
+          </div>
+          <div class="cart-items" id="cart-preview-items">
+            <div class="empty-cart">Your cart is empty</div>
+          </div>
+          <div class="cart-preview-footer">
+            <div class="cart-total">Total: ₹<span id="cart-total">0.00</span></div>
+            <button class="view-cart-btn" id="view-cart-btn">View Cart</button>
+          </div>
+        </div>
+      </div>
+      <a href="../men/men.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Back to Home
+      </a>
+    </div>
+  </header>
+
+  <!-- Product Listing Page -->
+  <section class="products" id="productsPage">
+    <h2>Sunglasses Collection</h2>
+
+    <div class="product-grid">
+      <!-- Product 1 -->
+      <div class="product-card" data-product="1">
+        <div class="collection-badge">New</div>
+        <div class="product-image">
+          <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=600&q=80" alt="Round Frame Shades">
+        </div>
+        <h3>Round Frame Shades</h3>
+        <span class="price">₹1,199</span>
+        <div class="product-actions">
+          <button class="add-to-cart-btn" data-product="1">Add to Cart</button>
+          <button class="wishlist-btn" data-product="1">
+            <i class="far fa-heart"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="product-card" data-product="2">
+        <div class="collection-badge">Popular</div>
+        <div class="product-image">
+          <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80" alt="Aviator Sunglasses">
+        </div>
+        <h3>Aviator Sunglasses</h3>
+        <span class="price">₹1,699</span>
+        <div class="product-actions">
+          <button class="add-to-cart-btn" data-product="2">Add to Cart</button>
+          <button class="wishlist-btn" data-product="2">
+            <i class="far fa-heart"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card" data-product="3">
+        <div class="product-image">
+          <img src="https://images.unsplash.com/photo-1577803645773-f96470509666?auto=format&fit=crop&w=600&q=80" alt="Wayfarer Style">
+        </div>
+        <h3>Wayfarer Style</h3>
+        <span class="price">₹1,299</span>
+        <div class="product-actions">
+          <button class="add-to-cart-btn" data-product="3">Add to Cart</button>
+          <button class="wishlist-btn" data-product="3">
+            <i class="far fa-heart"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="product-card" data-product="4">
+        <div class="collection-badge">Trending</div>
+        <div class="product-image">
+          <img src="https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&w=600&q=80" alt="Square Frame Sunglasses">
+        </div>
+        <h3>Square Frame Sunglasses</h3>
+        <span class="price">₹1,399</span>
+        <div class="product-actions">
+          <button class="add-to-cart-btn" data-product="4">Add to Cart</button>
+          <button class="wishlist-btn" data-product="4">
+            <i class="far fa-heart"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Product 5 -->
+      <div class="product-card" data-product="5">
+        <div class="product-image">
+          <img src="../men/pages/gc1.webp" alt="Sports Sunglasses">
+        </div>
+        <h3>Sports Sunglasses</h3>
+        <span class="price">₹1,499</span>
+        <div class="product-actions">
+          <button class="add-to-cart-btn" data-product="5">Add to Cart</button>
+          <button class="wishlist-btn" data-product="5">
+            <i class="far fa-heart"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Product 6 -->
+      <div class="product-card" data-product="6">
+        <div class="collection-badge">Premium</div>
+        <div class="product-image">
+          <img src="../men/pages/gc2.webp" alt="Polarized Sunglasses">
+        </div>
+        <h3>Polarized Sunglasses</h3>
+        <span class="price">₹1,899</span>
+        <div class="product-actions">
+          <button class="add-to-cart-btn" data-product="6">Add to Cart</button>
+          <button class="wishlist-btn" data-product="6">
+            <i class="far fa-heart"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Product 7 -->
+      <div class="product-card" data-product="7">
+        <div class="product-image">
+          <img src="../men/pages/GC3.webp" alt="Cat Eye Sunglasses">
+        </div>
+        <h3>Cat Eye Sunglasses</h3>
+        <span class="price">₹1,299</span>
+        <div class="product-actions">
+          <button class="add-to-cart-btn" data-product="7">Add to Cart</button>
+          <button class="wishlist-btn" data-product="7">
+            <i class="far fa-heart"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Product 8 -->
+      <div class="product-card" data-product="8">
+        <div class="collection-badge">Classic</div>
+        <div class="product-image">
+          <img src="../men/pages/glass1.webp" alt="Classic Black Shades">
+        </div>
+        <h3>Classic Black Shades</h3>
+        <span class="price">₹1,199</span>
+        <div class="product-actions">
+          <button class="add-to-cart-btn" data-product="8">Add to Cart</button>
+          <button class="wishlist-btn" data-product="8">
+            <i class="far fa-heart"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Detail Page -->
+  <section class="product-detail" id="productDetail">
+    <button class="back-btn" id="backToProducts" style="margin-bottom: 20px;">
+      <i class="fas fa-arrow-left"></i> Back to Products
+    </button>
+    <div class="detail-container">
+      <div class="detail-images">
+        <div class="main-image">
+          <img id="detailMainImage" src="" alt="Product Image">
+        </div>
+        <div class="thumbnail-images" id="thumbnailContainer">
+          <!-- Thumbnails will be added dynamically -->
+        </div>
+      </div>
+      <div class="detail-info">
+        <h1 class="detail-title" id="detailTitle">Product Title</h1>
+        <div class="detail-price" id="detailPrice">₹0</div>
+        <p class="detail-description" id="detailDescription">
+          Premium quality sunglasses with UV protection and stylish design. Perfect for everyday wear and outdoor activities.
+        </p>
+        
+        <div class="options-container">
+          <div class="option-title">Color</div>
+          <div class="color-options" id="colorOptions">
+            <!-- Color options will be added dynamically -->
+          </div>
+          
+          <div class="option-title">Size</div>
+          <div class="size-options" id="sizeOptions">
+            <!-- Size options will be added dynamically -->
+          </div>
+          
+          <div class="option-title">Quantity</div>
+          <div class="quantity-selector">
+            <button class="quantity-btn" id="decreaseQty">-</button>
+            <span class="quantity-value" id="quantityValue">1</span>
+            <button class="quantity-btn" id="increaseQty">+</button>
+          </div>
+        </div>
+        
+        <div class="detail-action-buttons">
+          <button class="add-to-cart-detail-btn" id="addToCartDetail">
+            <i class="fas fa-shopping-bag"></i> Add to Cart
+          </button>
+          <button class="detail-wishlist-btn" id="detailWishlistBtn">
+            <i class="far fa-heart"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Product data with color variations
+    const products = {
+      1: {
+      title: "Round Frame Shades",
+      price: 1199,
+        description: "Classic round frame sunglasses with UV400 protection. Perfect for a vintage look with modern protection. Made with high-quality materials for durability and comfort.",
+        colors: {
+          "Black": {
+            main: "../men/pages/gbl1.webp",
+            thumbnails: [
+              "pages/gbr1.webp",
+              "pages/gbr2.webp",
+            ]
+          },
+          "Brown": {
+            main: "https://images.unsplash.com/photo-1577803645773-f96470509666?auto=format&fit=crop&w=600&q=80",
+            thumbnails: [
+              "pages/gbro.webp",
+            ]
+          },
+        },
+        sizes: ["One Size"]
+      },
+      2: {
+        title: "Aviator Sunglasses",
+        price: 1699,
+        description: "Timeless aviator style with polarized lenses. Ideal for driving and outdoor activities. Features a lightweight metal frame and comfortable nose pads.",
+        colors: {
+          "Gold": {
+            main: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80",
+            thumbnails: [
+              "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80",
+              "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&w=600&q=80",
+            ]
+          },
+          "Silver": {
+            main: "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&w=600&q=80",
+            thumbnails: [
+              "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&w=600&q=80",
+              "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80",
+            ]
+          },
+        },
+        sizes: ["One Size"]
+      },
+      3: {
+        title: "Wayfarer Style",
+        price: 1299,
+        description: "Iconic wayfarer design with durable frames and 100% UV protection. The perfect blend of retro style and modern functionality.",
+        colors: {
+          "Black": {
+            main: "https://images.unsplash.com/photo-1577803645773-f96470509666?auto=format&fit=crop&w=600&q=80",
+            thumbnails: [
+              "https://images.unsplash.com/photo-1577803645773-f96470509666?auto=format&fit=crop&w=600&q=80",
+              "pages/gcc1.webp",
+            ]
+          },
+          "Tortoise": {
+            main: "https://images.unsplash.com/photo-1596704013027-8df8c13b7e7e?auto=format&fit=crop&w=600&q=80",
+            thumbnails: [
+              "https://images.unsplash.com/photo-1596704013027-8df8c13b7e7e?auto=format&fit=crop&w=600&q=80",
+              "https://images.unsplash.com/photo-1577803645773-f96470509666?auto=format&fit=crop&w=600&q=80",
+            ]
+          },
+        },
+        sizes: ["One Size"]
+      },
+      4: {
+        title: "Square Frame Sunglasses",
+        price: 1399,
+        description: "Modern square frame design with anti-glare coating and comfortable fit. Perfect for those who prefer a bold, contemporary look.",
+        colors: {
+          "Black": {
+            main: "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&w=600&q=80",
+            thumbnails: [
+              "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&w=600&q=80",
+              "pages/glass2.webp",
+            ]
+          },
+          "Brown": {
+            main: "pages/glass2.webp",
+            thumbnails: [
+              "pages/glass2.webp",
+              "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?auto=format&fit=crop&w=600&q=80",
+            ]
+          },
+        },
+        sizes: ["One Size"]
+      },
+      5: {
+        title: "Sports Sunglasses",
+        price: 1499,
+        description: "Lightweight sports sunglasses with wraparound design and non-slip grip. Perfect for active lifestyles and outdoor sports.",
+        colors: {
+          "Blue": {
+            main: "pages/gy.webp",
+            thumbnails: [
+              "pages/gp2.avif",
+              "pages/gp1.webp",
+            ]
+          },
+          "Black": {
+            main: "pages/glass8.jpg",
+            thumbnails: [
+              "pages/glass8.jpg",
+              "pages/glass7.avif",
+            ]
+          },
+        },
+        sizes: ["One Size"]
+      },
+      6: {
+        title: "Polarized Sunglasses",
+        price: 1899,
+        description: "Premium polarized lenses that reduce glare and enhance visual clarity. Perfect for driving, fishing, and other activities with intense light.",
+        colors: {
+          "Black": {
+            main: "pages/glass6.jpg",
+            thumbnails: [
+              "pages/glass5.webp",
+              "pages/gp1.webp",
+            ]
+          },
+          "Brown": {
+            main: "pages/glass8.jpg",
+            thumbnails: [
+              "pages/glass8.jpg",
+              "pages/glass7.avif",
+            ]
+          },
+        },
+        sizes: ["One Size"]
+      },
+      7: {
+        title: "Cat Eye Sunglasses",
+        price: 1299,
+        description: "Elegant cat eye design with vintage appeal and modern UV protection. Adds a touch of glamour to any outfit.",
+        colors: {
+          "Black": {
+            main: "pages/glass4.webp",
+            thumbnails: [
+              "pages/glass3.jpg",
+              "pages/glass2.webp",
+            ]
+          },
+          "White": {
+            main: "pages/gcc2.webp",
+            thumbnails: [
+              "pages/gcb.webp",
+              "pages/gc2.webp",
+            ]
+          },
+        },
+        sizes: ["One Size"]
+      },
+      8: {
+        title: "Classic Black Shades",
+        price: 1199,
+        description: "Timeless black sunglasses with versatile design suitable for any occasion. The perfect everyday accessory.",
+        colors: {
+          "Black": {
+           main: "pages/glass4.webp",
+            thumbnails: [
+              "pages/glass3.jpg",
+              "pages/glass2.webp",
+            ]
+          },
+        },
+        sizes: ["One Size"]
+      }
+    };
+
+    // Shopping cart
+    let cart = JSON.parse(localStorage.getItem('cartItems')) || [];
+    let wishlist = [];
+    let currentProductId = null;
+    let currentColor = null;
+    let currentSize = null;
+    let currentQuantity = 1;
+
+    // DOM Elements
+    const productsPage = document.getElementById('productsPage');
+    const productDetail = document.getElementById('productDetail');
+    const cartBtn = document.getElementById('cart-btn');
+    const cartPreview = document.getElementById('cart-preview');
+    const cartCount = document.querySelector('.cart-count');
+    const cartPreviewItems = document.getElementById('cart-preview-items');
+    const cartTotal = document.getElementById('cart-total');
+    const cartItemsCount = document.getElementById('cart-items-count');
+    const viewCartBtn = document.getElementById('view-cart-btn');
+    const detailMainImage = document.getElementById('detailMainImage');
+    const thumbnailContainer = document.getElementById('thumbnailContainer');
+    const detailTitle = document.getElementById('detailTitle');
+    const detailPrice = document.getElementById('detailPrice');
+    const detailDescription = document.getElementById('detailDescription');
+    const colorOptions = document.getElementById('colorOptions');
+    const sizeOptions = document.getElementById('sizeOptions');
+    const quantityValue = document.getElementById('quantityValue');
+    const decreaseQty = document.getElementById('decreaseQty');
+    const increaseQty = document.getElementById('increaseQty');
+    const addToCartDetail = document.getElementById('addToCartDetail');
+    const detailWishlistBtn = document.getElementById('detailWishlistBtn');
+
+    // Update cart count
+    function updateCartCount() {
+      const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+      cartCount.textContent = totalItems;
+      cartItemsCount.textContent = `${totalItems} items`;
+    }
+
+    // Save cart to localStorage
+    function saveCart() {
+      localStorage.setItem('cartItems', JSON.stringify(cart));
+    }
+
+    // Add to cart
+    function addToCart(productId, color, size, quantity) {
+      const product = products[productId];
+      if (!product) return;
+
+      // Check if item already exists in cart
+      const existingItemIndex = cart.findIndex(item => 
+        item.id === productId && item.color === color && item.size === size
+      );
+
+      if (existingItemIndex > -1) {
+        // Update quantity if item exists
+        cart[existingItemIndex].quantity += quantity;
+      } else {
+        // Add new item to cart
+        cart.push({
+          id: productId,
+          name: product.title,
+          price: product.price,
+          color: color,
+          size: size,
+          quantity: quantity,
+          image: product.colors[color].main
+        });
+      }
+
+      updateCartCount();
+      updateCartPreview();
+      saveCart();
+      showNotification(`${product.title} added to cart!`);
+    }
+
+    // Remove from cart
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCartCount();
+      updateCartPreview();
+      saveCart();
+    }
+
+    // Update cart preview
+    function updateCartPreview() {
+      const cartPreviewItems = document.getElementById('cart-preview-items');
+      
+      if (cart.length === 0) {
+        cartPreviewItems.innerHTML = '<div class="empty-cart">Your cart is empty</div>';
+        cartTotal.textContent = '0.00';
+        return;
+      }
+
+      cartPreviewItems.innerHTML = '';
+      
+      let total = 0;
+      
+      cart.forEach((item, index) => {
+        const cartItem = document.createElement('div');
+        cartItem.className = 'cart-item';
+        cartItem.innerHTML = `
+          <img src="${item.image}" alt="${item.name}">
+          <div class="cart-item-info">
+            <div class="cart-item-name">${item.name}</div>
+            <div class="cart-item-price">₹${(item.price * item.quantity).toLocaleString()}</div>
+          </div>
+          <button class="cart-item-remove" data-index="${index}">
+            <i class="fas fa-times"></i>
+          </button>
+        `;
+        cartPreviewItems.appendChild(cartItem);
+        
+        total += item.price * item.quantity;
+      });
+
+      // Add event listeners for remove buttons
+      document.querySelectorAll('.cart-item-remove').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const index = parseInt(this.dataset.index);
+          removeFromCart(index);
+        });
+      });
+
+      cartTotal.textContent = total.toLocaleString();
+    }
+
+    // Show notification
+    function showNotification(message) {
+      // Create notification element
+      const notification = document.createElement('div');
+      notification.style.cssText = `
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        background: #4caf50;
+        color: white;
+        padding: 15px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        z-index: 1000;
+        animation: slideInRight 0.3s ease, slideOutRight 0.3s ease 2.7s;
+        max-width: 300px;
+      `;
+      notification.textContent = message;
+
+      // Add keyframes for animation
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes slideInRight {
+          from { transform: translateX(100%); opacity: 0; }
+          to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slideOutRight {
+          from { transform: translateX(0); opacity: 1; }
+          to { transform: translateX(100%); opacity: 0; }
+        }
+      `;
+      document.head.appendChild(style);
+
+      document.body.appendChild(notification);
+
+      // Remove notification after 3 seconds
+      setTimeout(() => {
+        if (notification.parentNode) {
+          notification.parentNode.removeChild(notification);
+        }
+      }, 3000);
+    }
+
+    // Show product detail page
+    function showProductDetail(productId) {
+      currentProductId = productId;
+      const product = products[productId];
+      
+      if (!product) return;
+      
+      detailTitle.textContent = product.title;
+      detailPrice.textContent = `₹${product.price.toLocaleString()}`;
+      detailDescription.textContent = product.description;
+      
+      const firstColor = Object.keys(product.colors)[0];
+      currentColor = firstColor;
+      
+      loadColorOptions(product.colors, firstColor);
+      loadSizeOptions(product.sizes);
+      
+      currentQuantity = 1;
+      quantityValue.textContent = currentQuantity;
+      
+      // Update wishlist button state
+      const isInWishlist = wishlist.includes(productId);
+      detailWishlistBtn.classList.toggle('active', isInWishlist);
+      detailWishlistBtn.innerHTML = isInWishlist ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>';
+      
+      productsPage.style.display = 'none';
+      productDetail.style.display = 'block';
+      
+      window.scrollTo(0, 0);
+    }
+
+    // Load color options
+    function loadColorOptions(colors, selectedColor) {
+      colorOptions.innerHTML = '';
+      
+      Object.keys(colors).forEach(colorName => {
+        const colorOption = document.createElement('div');
+        colorOption.className = `color-option ${colorName === selectedColor ? 'active' : ''}`;
+        colorOption.style.backgroundColor = getColorValue(colorName);
+        colorOption.dataset.color = colorName;
+        
+        colorOption.addEventListener('click', () => {
+          document.querySelectorAll('.color-option').forEach(opt => {
+            opt.classList.remove('active');
+          });
+          
+          colorOption.classList.add('active');
+          currentColor = colorName;
+          updateProductImages(colors[colorName]);
+        });
+        
+        colorOptions.appendChild(colorOption);
+      });
+      
+      updateProductImages(colors[selectedColor]);
+    }
+
+    // Get color value for background
+    function getColorValue(colorName) {
+      const colorMap = {
+        "Black": "#000000",
+        "Brown": "#8B4513",
+        "Tortoise": "#964B00",
+        "Gold": "#FFD700",
+        "Silver": "#C0C0C0",
+        "White": "#ffffff"
+      };
+      
+      return colorMap[colorName] || "#cccccc";
+    }
+
+    // Update product images based on color selection
+    function updateProductImages(colorData) {
+      if (!colorData) return;
+      
+      detailMainImage.src = colorData.main;
+      detailMainImage.alt = `Product in ${currentColor}`;
+      
+      thumbnailContainer.innerHTML = '';
+      
+      colorData.thumbnails.forEach((thumbSrc, index) => {
+        const thumbnail = document.createElement('div');
+        thumbnail.className = `thumbnail ${index === 0 ? 'active' : ''}`;
+        
+        const thumbImg = document.createElement('img');
+        thumbImg.src = thumbSrc;
+        thumbImg.alt = `Thumbnail ${index + 1}`;
+        
+        thumbnail.appendChild(thumbImg);
+        
+        thumbnail.addEventListener('click', () => {
+          document.querySelectorAll('.thumbnail').forEach(thumb => {
+            thumb.classList.remove('active');
+          });
+          
+          thumbnail.classList.add('active');
+          detailMainImage.src = thumbSrc;
+        });
+        
+        thumbnailContainer.appendChild(thumbnail);
+      });
+    }
+
+    // Load size options
+    function loadSizeOptions(sizes) {
+      sizeOptions.innerHTML = '';
+      
+      sizes.forEach((size, index) => {
+        const sizeOption = document.createElement('div');
+        sizeOption.className = `size-option ${index === 0 ? 'active' : ''}`;
+        sizeOption.textContent = size;
+        sizeOption.dataset.size = size;
+        
+        sizeOption.addEventListener('click', () => {
+          document.querySelectorAll('.size-option').forEach(opt => {
+            opt.classList.remove('active');
+          });
+          
+          sizeOption.classList.add('active');
+          currentSize = size;
+        });
+        
+        sizeOptions.appendChild(sizeOption);
+      });
+      
+      currentSize = sizes[0];
+    }
+
+    // Toggle wishlist
+    function toggleWishlist(productId) {
+      const index = wishlist.indexOf(productId);
+      if (index > -1) {
+        wishlist.splice(index, 1);
+        showNotification('Removed from wishlist');
+      } else {
+        wishlist.push(productId);
+        showNotification('Added to wishlist');
+      }
+      
+      // Update all wishlist buttons for this product
+      document.querySelectorAll(`.wishlist-btn[data-product="${productId}"]`).forEach(btn => {
+        const isInWishlist = wishlist.includes(productId);
+        btn.classList.toggle('active', isInWishlist);
+        btn.innerHTML = isInWishlist ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>';
+      });
+      
+      // Update detail page wishlist button if this is the current product
+      if (currentProductId === productId) {
+        const isInWishlist = wishlist.includes(productId);
+        detailWishlistBtn.classList.toggle('active', isInWishlist);
+        detailWishlistBtn.innerHTML = isInWishlist ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>';
+      }
+    }
+
+    // Show main products page
+    function showProductsPage() {
+      productsPage.style.display = 'block';
+      productDetail.style.display = 'none';
+    }
+
+    // Event Listeners
+    document.addEventListener('DOMContentLoaded', function() {
+      updateCartCount();
+      updateCartPreview();
+      
+      // Cart button click
+      cartBtn.addEventListener('click', function() {
+        cartPreview.classList.toggle('active');
+      });
+
+      // Close cart preview when clicking outside
+      document.addEventListener('click', function(e) {
+        if (!cartBtn.contains(e.target) && !cartPreview.contains(e.target)) {
+          cartPreview.classList.remove('active');
+        }
+      });
+
+      // View cart button
+      viewCartBtn.addEventListener('click', function() {
+        // Navigate to the cart page
+        window.location.href = '../cart/cart.html';
+        cartPreview.classList.remove('active');
+      });
+
+      // Back to products button
+      const backToProducts = document.getElementById('backToProducts');
+      if (backToProducts) {
+        backToProducts.addEventListener('click', showProductsPage);
+      }
+
+      // Quantity controls
+      decreaseQty.addEventListener('click', () => {
+        if (currentQuantity > 1) {
+          currentQuantity--;
+          quantityValue.textContent = currentQuantity;
+        }
+      });
+
+      increaseQty.addEventListener('click', () => {
+        currentQuantity++;
+        quantityValue.textContent = currentQuantity;
+      });
+
+      // Add to cart from detail page
+      addToCartDetail.addEventListener('click', () => {
+        addToCart(currentProductId, currentColor, currentSize, currentQuantity);
+        
+        // Show confirmation animation
+        addToCartDetail.innerHTML = '<i class="fas fa-check"></i> Added to Cart';
+        addToCartDetail.style.background = '#4caf50';
+        addToCartDetail.style.animation = 'addedPulse 0.8s ease';
+        
+        setTimeout(() => {
+          addToCartDetail.innerHTML = '<i class="fas fa-shopping-bag"></i> Add to Cart';
+          addToCartDetail.style.background = '';
+          addToCartDetail.style.animation = '';
+        }, 1500);
+      });
+
+      // Wishlist button in detail page
+      detailWishlistBtn.addEventListener('click', () => {
+        toggleWishlist(currentProductId);
+      });
+
+      // Add event listeners to product cards
+      document.querySelectorAll('.product-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+          if (e.target.classList.contains('add-to-cart-btn') || e.target.classList.contains('wishlist-btn')) {
+            return;
+          }
+          
+          const productId = card.dataset.product;
+          showProductDetail(productId);
+        });
+      });
+
+      // Add to Cart from grid buttons
+      document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          
+          const productId = this.dataset.product;
+          const product = products[productId];
+          const defaultColor = Object.keys(product.colors)[0];
+          const defaultSize = product.sizes[0];
+          
+          addToCart(productId, defaultColor, defaultSize, 1);
+          
+          const originalText = this.textContent;
+          
+          this.textContent = 'Added ✓';
+          this.style.background = '#4caf50';
+          this.style.animation = 'addedPulse 0.8s ease';
+          
+          setTimeout(() => {
+            this.textContent = originalText;
+            this.style.background = '';
+            this.style.animation = '';
+          }, 1500);
+        });
+      });
+
+      // Wishlist buttons in grid
+      document.querySelectorAll('.wishlist-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const productId = this.dataset.product;
+          toggleWishlist(productId);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

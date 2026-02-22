@@ -1,0 +1,163 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #f9f9f9;
+  color: #333;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  padding: 12px 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.menu-icon {
+  font-size: 26px;
+  cursor: pointer;
+}
+
+/* Slide Menu */
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: -320px;
+  width: 300px;
+  height: 100%;
+  background: #fff;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+  transition: 0.3s;
+  overflow-y: auto;
+  z-index: 2000;
+}
+
+.side-menu.active {
+  right: 0;
+}
+
+.menu-header {
+  padding: 15px 20px;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menu-header h3 {
+  font-size: 18px;
+}
+
+.menu-close {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.menu-list {
+  list-style: none;
+}
+
+.menu-list li {
+  border-bottom: 1px solid #eee;
+}
+
+.menu-list li a {
+  display: block;
+  padding: 15px 20px;
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  transition: 0.2s;
+}
+
+.menu-list li a:hover {
+  background: #ffe082;
+  color: #000;
+}
+
+.menu-footer {
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid #eee;
+}
+
+.menu-footer button {
+  background: #ffb300;
+  border: none;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.menu-footer button:hover {
+  background: #ff9800;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  margin-top: 60px;
+  padding: 50px 20px;
+  background: linear-gradient(120deg, #ffe082, #ffcc80);
+  color: #333;
+  border-radius: 12px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Product Grid */
+.products {
+  width: 90%;
+  margin: 50px auto;
+}
+
+.products h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  background: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.product-card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.product-card h3 {
+  margin: 10px 0 5px;
+}
+
+.price {
+  color: #ff9800;
+  font-weight: bold;
+}
